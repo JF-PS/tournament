@@ -4,4 +4,8 @@ module.exports = (repository) => ({
     if (currentTournament) return { message: "This name already exists" };
     return repository.create(formData);
   },
+
+  async getById(tournamentId) {
+    return await repository.getById(tournamentId);
+  },
 });

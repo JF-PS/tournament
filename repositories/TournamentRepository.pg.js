@@ -15,6 +15,20 @@ module.exports = class TournamentsRepository {
     });
   }
 
+  async getById(id) {
+    return await new Promise((resolve, reject) => {
+      Tournament.findOne({
+        where: { id },
+      })
+        .then((tournament) => {
+          resolve(tournament);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
   async create(formData) {
     return await new Promise((resolve, reject) => {
       Tournament.create(formData)
