@@ -1,6 +1,6 @@
-module.exports = (repository) => ({
+module.exports = (buisness) => ({
   async create(req, res) {
-    await repository
+    await buisness
       .create(req.body)
       .then((tournament) => {
         res.status(200).send(tournament);

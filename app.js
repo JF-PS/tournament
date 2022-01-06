@@ -9,9 +9,10 @@ const port = process.env.PORT || 8000;
 
 app.use(cors());
 
-const TournamentsRepository = require("./repositories/TournamentRepository.pg");
-const tournamentController = require("./controllers/tournaments.controller");
 const tournamentRoutes = require("./routes/tournaments.route");
+const tournamentController = require("./controllers/tournaments.controller");
+const tournamentBuisness = require("./buisness/tournaments.buisness");
+const TournamentsRepository = require("./repositories/TournamentRepository.pg");
 const tournamentsRepository = new TournamentsRepository();
 
 // ============================================================================================================================================================================
@@ -30,7 +31,10 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
   "/tournaments",
-  tournamentRoutes(express, tournamentController(tournamentsRepository))
+  tournamentRoutes(
+    express,
+    tournamentController(tournamentBuisness(tournamentsRepository))
+  )
 );
 
 server.listen(port, () => {
