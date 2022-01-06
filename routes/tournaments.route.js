@@ -3,7 +3,5 @@ module.exports = (express, controller) => {
 
   router.post("/create", controller.create);
 
-  router.get("/:id", controller.getById);
-
   return router;
 };
