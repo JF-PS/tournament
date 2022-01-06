@@ -1,9 +1,7 @@
 module.exports = (express, controller) => {
   const router = express.Router();
 
-  router.post("/signin", controller.signIn);
-
-  router.post("/signup", controller.signUp);
+  router.post("/create", controller.create);
 
   return router;
 };

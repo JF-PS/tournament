@@ -80,17 +80,6 @@
                     "allowNull": false,
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
-                },
-                "SectionId": {
-                    "allowNull": true,
-                    "references": {
-                        "model": "Sections",
-                        "key": "id"
-                    },
-                    "onDelete": "SET NULL",
-                    "onUpdate": "CASCADE",
-                    "field": "SectionId",
-                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
@@ -214,6 +203,41 @@
             },
             "indexes": []
         },
+        "Tournaments": {
+            "tableName": "Tournaments",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "nom": {
+                    "field": "nom",
+                    "seqType": "Sequelize.TEXT"
+                },
+                "nb_participants": {
+                    "field": "nb_participants",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "nb_max_participants": {
+                    "field": "nb_max_participants",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
         "Users": {
             "tableName": "Users",
             "schema": {
@@ -250,8 +274,8 @@
             "indexes": []
         }
     },
-    "path": "D:\\Noël\\Wina\\winapedia\\server\\migrations\\_current.json",
-    "backupPath": "D:\\Noël\\Wina\\winapedia\\server\\migrations\\_current_bak.json",
+    "path": "D:\\Noël\\Wina\\winapedia\\Api archi logicielle\\migrations\\_current.json",
+    "backupPath": "D:\\Noël\\Wina\\winapedia\\Api archi logicielle\\migrations\\_current_bak.json",
     "exists": false,
     "revision": 1
 }

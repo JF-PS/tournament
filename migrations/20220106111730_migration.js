@@ -4,18 +4,19 @@ const Sequelize = require("sequelize");
  * Actions summary:
  *
  * createTable() => "Themes", deps: []
+ * createTable() => "Tournaments", deps: []
  * createTable() => "Users", deps: []
  * createTable() => "Articles", deps: [Themes]
  * createTable() => "Sections", deps: [Themes]
  * createTable() => "Figures", deps: [Themes]
- * createTable() => "Definitions", deps: [Sections, Sections]
+ * createTable() => "Definitions", deps: [Sections]
  *
  */
 
 const info = {
   revision: 1,
   name: "migration",
-  created: "2021-12-19T14:59:21.696Z",
+  created: "2022-01-06T11:17:30.973Z",
   comment: "",
 };
 
@@ -34,6 +35,38 @@ const migrationCommands = (transaction) => [
         },
         title: { type: Sequelize.TEXT, field: "title" },
         description: { type: Sequelize.TEXT, field: "description" },
+        createdAt: {
+          type: Sequelize.DATE,
+          field: "createdAt",
+          allowNull: false,
+        },
+        updatedAt: {
+          type: Sequelize.DATE,
+          field: "updatedAt",
+          allowNull: false,
+        },
+      },
+      { transaction },
+    ],
+  },
+  {
+    fn: "createTable",
+    params: [
+      "Tournaments",
+      {
+        id: {
+          type: Sequelize.INTEGER,
+          field: "id",
+          autoIncrement: true,
+          primaryKey: true,
+          allowNull: false,
+        },
+        nom: { type: Sequelize.TEXT, field: "nom" },
+        nb_participants: { type: Sequelize.INTEGER, field: "nb_participants" },
+        nb_max_participants: {
+          type: Sequelize.INTEGER,
+          field: "nb_max_participants",
+        },
         createdAt: {
           type: Sequelize.DATE,
           field: "createdAt",
@@ -218,14 +251,6 @@ const migrationCommands = (transaction) => [
           field: "updatedAt",
           allowNull: false,
         },
-        SectionId: {
-          type: Sequelize.INTEGER,
-          field: "SectionId",
-          onUpdate: "CASCADE",
-          onDelete: "SET NULL",
-          references: { model: "Sections", key: "id" },
-          allowNull: true,
-        },
       },
       { transaction },
     ],
@@ -252,6 +277,10 @@ const rollbackCommands = (transaction) => [
   {
     fn: "dropTable",
     params: ["Themes", { transaction }],
+  },
+  {
+    fn: "dropTable",
+    params: ["Tournaments", { transaction }],
   },
   {
     fn: "dropTable",

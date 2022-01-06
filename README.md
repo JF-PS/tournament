@@ -116,6 +116,10 @@ sequelize model:create --name Definition --attributes sectionId:integer,field:te
 
 sequelize model:create --name User --attributes login:text,password:text,admin:boolean
 
+### ============================================================
+
+sequelize model:create --name Tournament --attributes nom:text,nb_participants:integer,nb_max_participants:integer
+
 ###### -----------------------------------------------------------------------------------------------------------------------------------
 
 ###### commande relation
