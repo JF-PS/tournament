@@ -15,6 +15,12 @@ const tournamentBuisness = require("./buisness/tournaments.buisness");
 const TournamentsRepository = require("./repositories/TournamentRepository.pg");
 const tournamentsRepository = new TournamentsRepository();
 
+const participantRoutes = require("./routes/participants.route");
+const participantController = require("./controllers/participants.controller");
+const participantBuisness = require("./buisness/participants.business");
+const ParticipantsRepository = require("./repositories/participantRepository.pg");
+const participantsRepository = new ParticipantsRepository();
+
 // ============================================================================================================================================================================
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
@@ -34,6 +40,14 @@ app.use(
   tournamentRoutes(
     express,
     tournamentController(tournamentBuisness(tournamentsRepository))
+  )
+);
+
+app.use(
+  "/participants",
+  participantRoutes(
+    express,
+    participantController(participantBuisness(participantsRepository))
   )
 );
 
