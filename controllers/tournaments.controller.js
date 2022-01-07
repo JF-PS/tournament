@@ -1,7 +1,8 @@
 module.exports = (buisness) => ({
   async create(req, res) {
+    const Tournament = require("../expositions/tournament");
     await buisness
-      .create(req.body)
+      .create(new Tournament(req.body.nom))
       .then((tournament) => {
         res.status(200).send(tournament);
       })
