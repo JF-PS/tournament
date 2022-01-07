@@ -120,6 +120,8 @@ sequelize model:create --name User --attributes login:text,password:text,admin:b
 
 sequelize model:create --name Tournament --attributes nom:text,nb_participants:integer,nb_max_participants:integer
 
+sequelize model:create --name Participant --attributes name:text,nb_points:integer
+
 ###### -----------------------------------------------------------------------------------------------------------------------------------
 
 ###### commande relation

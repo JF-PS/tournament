@@ -3,6 +3,7 @@ const Sequelize = require("sequelize");
 /**
  * Actions summary:
  *
+ * createTable() => "Participants", deps: []
  * createTable() => "Themes", deps: []
  * createTable() => "Tournaments", deps: []
  * createTable() => "Users", deps: []
@@ -16,11 +17,39 @@ const Sequelize = require("sequelize");
 const info = {
   revision: 1,
   name: "migration",
-  created: "2022-01-06T11:17:30.973Z",
+  created: "2022-01-06T15:58:27.160Z",
   comment: "",
 };
 
 const migrationCommands = (transaction) => [
+  {
+    fn: "createTable",
+    params: [
+      "Participants",
+      {
+        id: {
+          type: Sequelize.INTEGER,
+          field: "id",
+          autoIncrement: true,
+          primaryKey: true,
+          allowNull: false,
+        },
+        name: { type: Sequelize.TEXT, field: "name" },
+        nb_points: { type: Sequelize.INTEGER, field: "nb_points" },
+        createdAt: {
+          type: Sequelize.DATE,
+          field: "createdAt",
+          allowNull: false,
+        },
+        updatedAt: {
+          type: Sequelize.DATE,
+          field: "updatedAt",
+          allowNull: false,
+        },
+      },
+      { transaction },
+    ],
+  },
   {
     fn: "createTable",
     params: [
@@ -269,6 +298,10 @@ const rollbackCommands = (transaction) => [
   {
     fn: "dropTable",
     params: ["Figures", { transaction }],
+  },
+  {
+    fn: "dropTable",
+    params: ["Participants", { transaction }],
   },
   {
     fn: "dropTable",
